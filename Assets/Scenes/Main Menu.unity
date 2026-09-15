@@ -868,7 +868,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1090110792}
         m_TargetAssemblyTypeName: Transition, Assembly-CSharp
-        m_MethodName: FadeIn
+        m_MethodName: FadeOut
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -928,7 +928,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b275e871f364eba4abb185045865eb50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: ProjectUEMOrigens
+  sceneName: "Pr\xF3logo"
 --- !u!1 &1453232802
 GameObject:
   m_ObjectHideFlags: 0
