@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Main Menu.unity
     guid: bffbd7dcf79eb9e47b29f70be0dfd165
   - enabled: 1
-    path: Assets/Scenes/ProjectUEMOrigens.unity
+    path: "Assets/Scenes/Pr\xF3logo.unity"
     guid: 33a49b1337acf404abdc74e2162e4a61
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
