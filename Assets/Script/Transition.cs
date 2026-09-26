@@ -18,7 +18,7 @@ public class Transition: MonoBehaviour
 
     private void Start()
     {
-      
+
     }
 
     public void FadeOut()
