@@ -4,23 +4,13 @@ using UnityEngine;
 
 public class movimento : MonoBehaviour
 {
-    [SerializeField] private float movementSpeed = 5f;
+    [SerializeField] private float movementSpeed = 7.5f;
 
     void Update()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
 
-        float verticalInput = Input.GetAxis("Vertical");
-
-        if (horizontalInput > 0 && horizontalInput < 1) horizontalInput = 0;
-        else if (horizontalInput > 0) horizontalInput = 1;
-        else if (horizontalInput < 0 && horizontalInput > -1) horizontalInput = 0;
-        else if (horizontalInput < 0) horizontalInput = -1;
-
-        if (verticalInput > 0 && verticalInput < 1) verticalInput = 0;
-        else if (verticalInput > 0) verticalInput = 1;
-        else if (verticalInput < 0 && verticalInput > -1) verticalInput = 0;
-        else if (verticalInput < 0) verticalInput = -1;
+        float verticalInput = Input.GetAxisRaw("Vertical");
 
         transform.position = transform.position + new Vector3(horizontalInput * movementSpeed * Time.deltaTime, verticalInput * movementSpeed * Time.deltaTime, 0);
         transform.position.Normalize();
