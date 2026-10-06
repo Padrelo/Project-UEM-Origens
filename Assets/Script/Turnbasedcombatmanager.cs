@@ -10,17 +10,17 @@ using UnityEngine;
 ///
 /// Fluxo de cada turno:
 ///  1) PLANEJAMENTO: todos rolam dados de velocidade. A IA escolhe sozinha;
-///     o jogador chama Combatant.Assign(...) (ex.: pelos botıes da UI).
-///  2) Ao chamar ConfirmPlan(), comeÁa a RESOLU«√O: os slots s„o executados
-///     do mais r·pido para o mais lento.
+///     o jogador chama Combatant.Assign(...) (ex.: pelos bot√µes da UI).
+///  2) Ao chamar ConfirmPlan(), come√ßa a RESOLU√á√ÉO: os slots s√£o executados
+///     do mais r√°pido para o mais lento.
 ///
-/// Regras (simplificadas e f·ceis de ajustar):
+/// Regras (simplificadas e f√°ceis de ajustar):
 ///  - ATAQUE x ATAQUE (ambos se escolheram) = CONFRONTO: cada lado rola um dado por rodada;
 ///    quem tirar menos perde um dado (empate: ambos perdem um). Quando um lado fica sem dados,
-///    os dados restantes do vencedor acertam sem oposiÁ„o.
-///  - ATAQUE x DEFESA: cada dado de defesa reduz o dano de um dado de ataque (mÌn. 0).
-///  - ATAQUE sem oposiÁ„o: todos os dados causam dano total.
-///  - Mana È gasta quando o slot entra em aÁ„o; sem mana, o slot falha.
+///    os dados restantes do vencedor acertam sem oposi√ß√£o.
+///  - ATAQUE x DEFESA: cada dado de defesa reduz o dano de um dado de ataque (m√≠n. 0).
+///  - ATAQUE sem oposi√ß√£o: todos os dados causam dano total.
+///  - Mana √© gasta quando o slot entra em a√ß√£o; sem mana, o slot falha.
 /// </summary>
 public class TurnBasedCombatManager : MonoBehaviour
 {
@@ -28,13 +28,16 @@ public class TurnBasedCombatManager : MonoBehaviour
 
     [SerializeField] private List<Combatant> playerTeam = new List<Combatant>();
     [SerializeField] private List<Combatant> enemyTeam = new List<Combatant>();
-    [SerializeField] private float stepDelay = 0.6f; // pausa entre rolagens (para animaÁıes/UI)
+    [SerializeField] private float stepDelay = 0.6f; // pausa entre rolagens (para anima√ß√µes/UI)
+
+    public IReadOnlyList<Combatant> PlayerTeam => playerTeam;
+    public IReadOnlyList<Combatant> EnemyTeam => enemyTeam;
 
     public Phase CurrentPhase { get; private set; }
     public int TurnNumber { get; private set; }
 
-    // Eventos para a UI/animaÁıes
-    public event Action<int> OnTurnStarted;                         // n˙mero do turno
+    // Eventos para a UI/anima√ß√µes
+    public event Action<int> OnTurnStarted;                         // n√∫mero do turno
     public event Action<CombatSlot, CombatSlot, int, int> OnClash;  // slotA, slotB, rolagemA, rolagemB
     public event Action<CombatSlot, Combatant, int> OnHit;          // quem atacou, alvo, dano final
     public event Action<string> OnLog;                              // texto para log de combate
@@ -61,19 +64,19 @@ public class TurnBasedCombatManager : MonoBehaviour
         Log($"--- Turno {TurnNumber} ---");
     }
 
-    /// <summary>Chame quando o jogador terminar de escolher (bot„o "Confirmar").</summary>
+    /// <summary>Chame quando o jogador terminar de escolher (bot√£o "Confirmar").</summary>
     public void ConfirmPlan()
     {
         if (CurrentPhase != Phase.Planning) return;
         StartCoroutine(ResolveTurn());
     }
 
-    // ---------------- RESOLU«√O ----------------
+    // ---------------- RESOLU√á√ÉO ----------------
     private IEnumerator ResolveTurn()
     {
         CurrentPhase = Phase.Resolving;
 
-        // Todos os slots com habilidade, do mais r·pido ao mais lento (empate: aleatÛrio)
+        // Todos os slots com habilidade, do mais r√°pido ao mais lento (empate: aleat√≥rio)
         List<CombatSlot> order = playerTeam.Concat(enemyTeam)
             .Where(c => c.IsAlive)
             .SelectMany(c => c.Slots)
@@ -85,12 +88,12 @@ public class TurnBasedCombatManager : MonoBehaviour
         foreach (CombatSlot slot in order)
         {
             if (slot.resolved || !slot.owner.IsAlive) continue;
-            if (slot.skill.kind == SkillKind.Defend) continue; // defesa sÛ age quando alguÈm ataca
+            if (slot.skill.kind == SkillKind.Defend) continue; // defesa s√≥ age quando algu√©m ataca
 
             if (!slot.owner.Stats.TryUseMana(slot.skill.manaCost))
             {
                 slot.resolved = true;
-                Log($"{slot.owner.name} n„o tem mana para {slot.skill.skillName}!");
+                Log($"{slot.owner.name} n√£o tem mana para {slot.skill.skillName}!");
                 continue;
             }
 
@@ -98,7 +101,7 @@ public class TurnBasedCombatManager : MonoBehaviour
             if (target == null || !target.IsAlive)
             {
                 slot.resolved = true;
-                Log($"{slot.owner.name}: alvo inv·lido, {slot.skill.skillName} falhou.");
+                Log($"{slot.owner.name}: alvo inv√°lido, {slot.skill.skillName} falhou.");
                 continue;
             }
 
@@ -124,7 +127,7 @@ public class TurnBasedCombatManager : MonoBehaviour
         BeginPlanning();
     }
 
-    /// <summary>Slot de ataque do alvo, ainda n„o usado, que mira em quem est· atacando (gera confronto).</summary>
+    /// <summary>Slot de ataque do alvo, ainda n√£o usado, que mira em quem est√° atacando (gera confronto).</summary>
     private CombatSlot FindCounterAttack(CombatSlot attacker, Combatant target)
     {
         foreach (CombatSlot s in target.Slots.OrderByDescending(s => s.speed))
@@ -176,7 +179,7 @@ public class TurnBasedCombatManager : MonoBehaviour
             yield return new WaitForSeconds(stepDelay);
         }
 
-        // Dados que sobraram do vencedor acertam sem oposiÁ„o
+        // Dados que sobraram do vencedor acertam sem oposi√ß√£o
         for (; ia < diceA.Length; ia++) DealDamage(a, b.owner, diceA[ia].Roll());
         for (; ib < diceB.Length; ib++) DealDamage(b, a.owner, diceB[ib].Roll());
     }
@@ -199,7 +202,7 @@ public class TurnBasedCombatManager : MonoBehaviour
         }
     }
 
-    // ---- Ataque sem oposiÁ„o ----
+    // ---- Ataque sem oposi√ß√£o ----
     private IEnumerator UnopposedAttack(CombatSlot attack, Combatant target)
     {
         foreach (DieRange die in attack.skill.dice)
@@ -213,7 +216,7 @@ public class TurnBasedCombatManager : MonoBehaviour
     {
         if (!target.IsAlive) return;
 
-        // ignoreDefense = true: aqui a reduÁ„o j· È feita pelos dados de defesa
+        // ignoreDefense = true: aqui a redu√ß√£o j√° √© feita pelos dados de defesa
         target.Stats.TakeDamage(damage, true);
         OnHit?.Invoke(source, target, damage);
         Log($"  {source.owner.name} causa {damage} de dano em {target.name}" +
@@ -228,7 +231,7 @@ public class TurnBasedCombatManager : MonoBehaviour
         if (playersAlive && enemiesAlive) return false;
 
         CurrentPhase = Phase.Finished;
-        Log(playersAlive ? "VitÛria!" : "Derrota...");
+        Log(playersAlive ? "Vit√≥ria!" : "Derrota...");
         OnCombatEnded?.Invoke(playersAlive);
         return true;
     }

@@ -15,14 +15,14 @@ MonoBehaviour:
   attackName: Ataque
   type: 0
   manaCost: 0
-  cooldown: 0.5
+  cooldown: 1
   damage: 10
   ignoreDefense: 0
-  critChance: 0.1
+  critChance: 0.2
   critMultiplier: 2
   targetLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   range: 1
   radius: 0.75
   projectilePrefab: {fileID: 0}
