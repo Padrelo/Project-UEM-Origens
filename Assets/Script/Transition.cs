@@ -9,6 +9,7 @@ public class Transition: MonoBehaviour
     [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] private float fadeDuration = 1.0f;
     [SerializeField] private string sceneName;
+    //[SerializeField] private RectTransform rt;
 
     private void Awake()
     {
@@ -19,6 +20,15 @@ public class Transition: MonoBehaviour
     private void Start()
     {
 
+    }
+    private void Update()
+    {
+        //if (rt != null && rt.localPosition.y > 600)
+        //{
+        //    Debug.Log("AA");
+       //     FadeOut();
+        //}
+       // Debug.Log("bbbb");
     }
 
     public void FadeOut()
@@ -41,11 +51,6 @@ public class Transition: MonoBehaviour
 
         canvasGroup.alpha = targetAlpha;
         finalFunction();
-    }
-
-    void Update()
-    {
-        
     }
 
     public void FadeIn()
