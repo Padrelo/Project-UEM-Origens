@@ -129,7 +129,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 193394339}
-  - component: {fileID: 193394338}
+  - component: {fileID: 193394340}
   m_Layer: 0
   m_Name: GerenciadorDialogo
   m_TagString: Untagged
@@ -137,24 +137,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &193394338
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 193394337}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2aa2b12ed51f544b9f2c5fe75e291fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textoUI: {fileID: 1622427974}
-  caixaDeDialogo: {fileID: 639664129}
-  tempoPorLetra: 0.04
-  pausaPontuacao: 0.25
-  teclaAvancar: 122
-  teclaPular: 120
 --- !u!4 &193394339
 Transform:
   m_ObjectHideFlags: 0
@@ -170,6 +152,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &193394340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 193394337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ab3b774251482741b7eb431cce9593e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textoUI: {fileID: 1622427974}
+  caixaDeDialogo: {fileID: 639664129}
+  tempoPorLetra: 0.04
+  pausaPontuacao: 0.25
+  teclaAvancar: 122
+  teclaPularTudo: 120
 --- !u!1 &265967290
 GameObject:
   m_ObjectHideFlags: 0
@@ -765,7 +765,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: becf3f0e648f6994a91cef9049ebac07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogo: {fileID: 193394338}
+  dialogo: {fileID: 193394340}
   falas:
   - "Ola este \xE9 o teste de dialogo. Aperte <b>Z</b> para pular minha fala e ir
     para a proxima."

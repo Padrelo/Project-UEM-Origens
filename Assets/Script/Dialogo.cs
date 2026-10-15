@@ -12,7 +12,7 @@ public class Dialogo : MonoBehaviour
     [SerializeField] private float tempoPorLetra = 0.04f;
     [SerializeField] private float pausaPontuacao = 0.25f;
     [SerializeField] private KeyCode teclaAvancar = KeyCode.Z;
-    [SerializeField] private KeyCode teclaPular = KeyCode.X;
+    [SerializeField] private KeyCode teclaPularTudo = KeyCode.X;
 
     private string[] falas;
     private int indiceFala;
@@ -35,10 +35,17 @@ public class Dialogo : MonoBehaviour
     {
         if (!Ativo) return;
 
+        // X pula o diálogo inteiro, a qualquer momento
+        if (Input.GetKeyDown(teclaPularTudo))
+        {
+            PularDialogo();
+            return;
+        }
+
         if (Digitando)
         {
-            // Pula a animação e mostra a fala inteira
-            if (Input.GetKeyDown(teclaPular) || Input.GetKeyDown(teclaAvancar))
+            // Z completa a fala atual
+            if (Input.GetKeyDown(teclaAvancar))
                 CompletarFala();
         }
         else if (Input.GetKeyDown(teclaAvancar))
@@ -88,14 +95,22 @@ public class Dialogo : MonoBehaviour
     {
         indiceFala++;
         if (indiceFala < falas.Length)
-        {
             MostrarFala();
-        }
         else
-        {
-            Ativo = false;
-            caixaDeDialogo.SetActive(false);
-        }
+            EncerrarDialogo();
+    }
+
+    private void PularDialogo()
+    {
+        if (rotinaDigitar != null) StopCoroutine(rotinaDigitar);
+        Digitando = false;
+        EncerrarDialogo();
+    }
+
+    private void EncerrarDialogo()
+    {
+        Ativo = false;
+        caixaDeDialogo.SetActive(false);
     }
 }
 //Como chamar a conversa
