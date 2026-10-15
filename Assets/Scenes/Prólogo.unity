@@ -722,7 +722,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2133598256
 RectTransform:
   m_ObjectHideFlags: 0
@@ -756,7 +756,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvasGroup: {fileID: 2133598258}
   fadeDuration: 5
-  sceneName: 
+  sceneName: move test
 --- !u!225 &2133598258
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -813,5 +813,5 @@ SceneRoots:
   m_Roots:
   - {fileID: 1079905416}
   - {fileID: 1571326745}
-  - {fileID: 598095020}
   - {fileID: 446923033}
+  - {fileID: 598095020}
