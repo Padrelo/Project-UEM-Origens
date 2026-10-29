@@ -287,6 +287,7 @@ GameObject:
   - component: {fileID: 156321175}
   - component: {fileID: 156321174}
   - component: {fileID: 156321176}
+  - component: {fileID: 156321177}
   m_Layer: 0
   m_Name: '"enemy"'
   m_TagString: Untagged
@@ -476,6 +477,19 @@ MonoBehaviour:
   deck:
   - {fileID: 11400000, guid: 8cfed714961e8da44ad175d0870606ad, type: 2}
   - {fileID: 11400000, guid: 055343d239cbb5e42b8916127ae2ca47, type: 2}
+--- !u!114 &156321177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 156321169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0edafedc4f2d16f46b00032b7b560867, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 0}
 --- !u!1 &357234286
 GameObject:
   m_ObjectHideFlags: 0
@@ -555,6 +569,7 @@ GameObject:
   - component: {fileID: 1377692990}
   - component: {fileID: 1377692991}
   - component: {fileID: 1377692992}
+  - component: {fileID: 1377692993}
   m_Layer: 0
   m_Name: '"player"'
   m_TagString: Untagged
@@ -772,6 +787,19 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8cfed714961e8da44ad175d0870606ad, type: 2}
   - {fileID: 11400000, guid: d9ab3aee1d6fadd429a561e82564fa7d, type: 2}
   - {fileID: 11400000, guid: 055343d239cbb5e42b8916127ae2ca47, type: 2}
+--- !u!114 &1377692993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1377692984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0edafedc4f2d16f46b00032b7b560867, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 0}
 --- !u!1 &1803908319
 GameObject:
   m_ObjectHideFlags: 0

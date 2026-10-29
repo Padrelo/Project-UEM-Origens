@@ -9,16 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2aa2b12ed51f544b9f2c5fe75e291fd, type: 3}
-  m_Name: queimando
+  m_Script: {fileID: 11500000, guid: fc08aa06f0470f34da7324322b6d3f3b, type: 3}
+  m_Name: Queimando
   m_EditorClassIdentifier: 
   displayName: Queimando
   type: 0
   icon: {fileID: 0}
-  tint: {r: 1, g: 0.55, b: 0.3, a: 1}
+  tint: {r: 1, g: 0.3452013, b: 0, a: 1}
   tickMode: 0
   duration: 3
   tickInterval: 1
+  ignoreDefense: 1
   damagePerTick: 5
   stackable: 0
   maxStacks: 3
