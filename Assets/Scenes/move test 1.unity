@@ -1015,7 +1015,7 @@ Transform:
   m_GameObject: {fileID: 1032558230}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -61.3, y: -11.5, z: 0}
+  m_LocalPosition: {x: -61.3, y: -11.5, z: -10}
   m_LocalScale: {x: 30, y: 30, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1122,7 +1122,7 @@ Transform:
   m_GameObject: {fileID: 1277011150}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -91.7, y: 9.6, z: 0}
+  m_LocalPosition: {x: -91.7, y: 9.6, z: -10}
   m_LocalScale: {x: 30, y: 30, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1229,7 +1229,7 @@ Transform:
   m_GameObject: {fileID: 1317926383}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -77.6, y: 27.3, z: 0}
+  m_LocalPosition: {x: -77.6, y: 27.3, z: -10}
   m_LocalScale: {x: 30, y: 30, z: 30}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1635,7 +1635,7 @@ Transform:
   m_GameObject: {fileID: 1992653743}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -92.3, y: -11.1, z: 0}
+  m_LocalPosition: {x: -92.3, y: -11.1, z: -10}
   m_LocalScale: {x: 30, y: 30, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1759,6 +1759,7 @@ GameObject:
   - component: {fileID: 2142338204}
   - component: {fileID: 2142338203}
   - component: {fileID: 2142338202}
+  - component: {fileID: 2142338205}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1783,7 +1784,7 @@ Camera:
   m_GameObject: {fileID: 2142338201}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 3
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -1840,6 +1841,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2142338205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2142338201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc1a508ae5be5084f985399ac5d5e898, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
