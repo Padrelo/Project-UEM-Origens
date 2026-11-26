@@ -37,6 +37,9 @@ public class DialogueManager : MonoBehaviour
     private Coroutine typing;
     private bool isTyping;
     private bool showingChoices;
+    private bool allowClose = true;        // false em cutscenes: o jogador não pode pular com Esc
+    private float autoAdvanceDelay;        // > 0: avança sozinho após esse tempo (segundos)
+    private Coroutine autoAdvance;
 
     private void Awake()
     {
@@ -58,17 +61,20 @@ public class DialogueManager : MonoBehaviour
     {
         if (!IsOpen) return;
 
-        if (Input.GetKeyDown(closeKey)) { End(); return; }
+        if (allowClose && Input.GetKeyDown(closeKey)) { End(); return; }
         if (Input.GetKeyDown(advanceKey) || Input.GetMouseButtonDown(0)) Advance();
     }
 
     // ---------- API pública ----------
 
-    public void StartDialogue(DialogueData data)
+    // canClose: permite fechar com Esc. autoAdvanceSeconds: 0 = espera o jogador avançar.
+    public void StartDialogue(DialogueData data, bool canClose = true, float autoAdvanceSeconds = 0f)
     {
         if (IsOpen || data == null || data.nodes.Count == 0) return;
 
         current = data;
+        allowClose = canClose;
+        autoAdvanceDelay = autoAdvanceSeconds;
         IsOpen = true;
         panel.SetActive(true);
         OnDialogueStarted?.Invoke();
@@ -100,6 +106,7 @@ public class DialogueManager : MonoBehaviour
         if (!IsOpen) return;
 
         if (typing != null) StopCoroutine(typing);
+        if (autoAdvance != null) StopCoroutine(autoAdvance);
         ClearChoices();
         isTyping = false;
         showingChoices = false;
@@ -132,6 +139,7 @@ public class DialogueManager : MonoBehaviour
         if (!string.IsNullOrEmpty(node.eventId)) OnDialogueEvent?.Invoke(node.eventId);
 
         if (typing != null) StopCoroutine(typing);
+        if (autoAdvance != null) StopCoroutine(autoAdvance);
         typing = StartCoroutine(TypeText(node));
     }
 
@@ -161,8 +169,22 @@ public class DialogueManager : MonoBehaviour
 
         if (node.choices != null && node.choices.Count > 0)
             ShowChoices(node);
-        else if (continueIndicator != null)
-            continueIndicator.SetActive(true);
+        else
+        {
+            if (continueIndicator != null) continueIndicator.SetActive(true);
+
+            if (autoAdvanceDelay > 0f)
+            {
+                if (autoAdvance != null) StopCoroutine(autoAdvance);
+                autoAdvance = StartCoroutine(AutoAdvance());
+            }
+        }
+    }
+
+    private IEnumerator AutoAdvance()
+    {
+        yield return new WaitForSecondsRealtime(autoAdvanceDelay);
+        Advance();
     }
 
     private void ShowChoices(DialogueNode node)
